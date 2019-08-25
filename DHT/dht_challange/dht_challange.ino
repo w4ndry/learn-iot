@@ -12,6 +12,7 @@ float lastHumidity = 0;
 int baris = 0;
 int baris1 = 0;
 int titik = 0;
+
 void header() {
   Serial.println("Kelembaban\tTemperatur\tTemperatur");
   Serial.println("    %  \t\tCelcius \tFahrenheit");
@@ -22,7 +23,6 @@ void setup() {
   Serial.begin(9600);
   dht.begin();
   Serial.println("Check DHT Sensor");
-  header();
 }
 
 void loop() {
@@ -58,8 +58,7 @@ void loop() {
       titik++; 
     }
   } else {
-    titik = 0;
-    if (titik == 0) {
+    if (baris == 0) {
       Serial.println("");
     }
     Serial.print(humidity);
@@ -70,6 +69,7 @@ void loop() {
     Serial.println("");
     lastTemperature = 0;
     lastHumidity = 0;
+    titik = 0;
     baris++;
   }
   delay(1000);
